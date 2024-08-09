@@ -1,1 +1,152 @@
+def login():
+    from tkinter import messagebox
+    pwd = E1.get()
+    name = E2.get()
+    print(name)
+    print(pwd)
+    import mysql.connector
+    top = mysql.connector.connect(host="localhost", user="root", password="Sarthrajak81@", database="hotel")
+    cur = top.cursor()
+    comm = "select count(*) from admin where name =" + "'" + name + "'" + "and passw = " + "'" + pwd + "'"
+    cur.execute(comm)
+    c = cur.fetchone()
+    if c[0] != 1:
+        messagebox.showerror('Invalid Password', 'Password Invalid')
+
+    else:
+        def menu():
+            def ins():
+                nam = L21.get()
+                cn = L31.get()
+                mn = L41.get()
+                gender = L51.get()
+                mob = L61.get()
+                email = L71.get()
+                print(nam)
+                print(cn)
+                print(mn)
+                print(gender)
+                print(mob)
+                print(email)
+                import mysql.connector
+                db = mysql.connector.connect(host='localhost', user='root', password='Sarthrajak81@', database='hotel')
+                cur = db.cursor()
+                sql = "insert into infor values(%s,%s,%s,%s,%s,%s)"
+                dat = [nam, cn, mn, gender, mob, email]
+                cur.execute(sql, dat)
+                db.commit()
+                db.close()
+
+            mw = Toplevel()
+            mw["background"] = "sky blue"
+            mw.geometry("1300x700+300+150")
+            Lab = Label(mw, width=111, height=100)
+            L2 = Label(mw, text="Customer Ref", font=("Times", 18), width=15)
+            L3 = Label(mw, text="Customer name", font=("Times", 18), width=15)
+            L4 = Label(mw, text="Mother name", font=("Times", 18), width=15)
+            L5 = Label(mw, text="Gender", font=("Times", 18), width=15)
+            L6 = Label(mw, text="Mobile name", font=("Times", 18), width=15)
+            L7 = Label(mw, text="Email Id", font=("Times", 18), width=15)
+            Lab.place(x=500, y=10)
+            L21 = Entry(mw, width=17, font=("Times", 18))
+            L31 = Entry(mw, width=17, font=("Times", 18))
+            L41 = Entry(mw, width=17, font=("Times", 18))
+            L51 = Entry(mw, width=17, font=("Times", 18))
+            L61 = Entry(mw, width=17, font=("Times", 18))
+            L71 = Entry(mw, width=17, font=("Times", 18))
+            Save = Button(mw, text="Save", font=("Times", 15), width=8, command=ins)
+            update = Button(mw, text="Update", font=("Times", 15), width=8)
+            delete = Button(mw, text="Delete", font=("Times", 15), width=8)
+            reset = Button(mw, text="Reset", font=("Times", 15), width=8)
+            Save.place(x=10, y=500)
+            update.place(x=110, y=500)
+            delete.place(x=210, y=500)
+            reset.place(x=310, y=500)
+            L2.place(x=10, y=90)
+            L21.place(x=250, y=90)
+            L3.place(x=10, y=150)
+            L31.place(x=250, y=150)
+            L4.place(x=10, y=210)
+            L41.place(x=250, y=210)
+            L5.place(x=10, y=270)
+            L51.place(x=250, y=270)
+            L6.place(x=10, y=330)
+            L61.place(x=250, y=330)
+            L7.place(x=10, y=390)
+            L71.place(x=250, y=390)
+            mw.mainloop()
+
+        def customer():
+            cw = Toplevel()
+            cw.geometry("1300x700+300+150")
+            cw.mainloop()
+
+        def booking():
+            bw = Toplevel()
+            bw.geometry("1300x700+300+150")
+            bw.mainloop()
+
+        def details():
+            dw = Toplevel()
+            dw.geometry("1300x700+300+150")
+            dw.mainloop()
+
+        def report():
+            rw = Toplevel()
+            rw.geometry("1300x700+300+150")
+            rw.mainloop()
+
+        new = Toplevel()
+        new.geometry("1900x900")
+        logo1 = PhotoImage(file="C:/Users/admin/Pictures/log.png")
+        imglogo1 = Label(new, image=logo1)
+        logo = PhotoImage(file="C:/Users/admin/Downloads/images (2).png")
+        imglogo = Label(new, image=logo)
+        img = PhotoImage(file="C:/Users/admin/Pictures/img.png")
+        image = Label(new, image=img)
+        b1 = Button(new, text="Menu", font=("Times", 25), fg="Dodger blue", height=0, borderwidth=0, command=menu)
+        b2 = Button(new, text="Customer", font=("Times", 25), fg="Dodger blue", height=0, borderwidth=0, command=customer)
+        b3 = Button(new, text="Booking", font=("Times", 25), fg="Dodger blue", height=0, borderwidth=0, command=booking)
+        b4 = Button(new, text="Details", font=("Times", 25), fg="Dodger blue", height=0, borderwidth=0,
+                    command=details)
+        b5 = Button(new, text="Report", font=("Times", 25), fg="Dodger blue", height=0, borderwidth=0, command=report)
+        b1.place(x=600, y=45)
+        b2.place(x=720, y=45)
+        b3.place(x=890, y=45)
+        b4.place(x=1050, y=45)
+        b5.place(x=1190, y=45)
+        image.place(x=0, y=110)
+        imglogo.place(x=0, y=0)
+        imglogo1.place(x=450, y=0)
+        new.mainloop()
+
+
+from tkinter import *
+
+top = Tk()
+top.title("Welcome To Taj System")
+top.geometry("1400x950")
+top.minsize(1600, 950)
+top.maxsize(1600, 950)
+Logo = PhotoImage(file="C:/Users/admin/Downloads/images (2).png")
+imgLogo = Label(image=Logo)
+Logo1 = PhotoImage(file="C:/Users/admin/Pictures/log.png")
+imgLogo1 = Label(image=Logo1)
+L1 = Label(text="Enter user name", font=("Times", 16, "bold"))
+image = PhotoImage(file='C:/Users/admin/Pictures/img.png')
+img = Label(image=image)
+info = Label(width=10, height=5)
+image2 = PhotoImage(file='C:/Users/admin/Pictures/pngtree-register-page-design-login-form-mockup-png-image_7895185.png')
+img2 = Label(image=image2)
+B1 = Button(text="Login", font=("Times", 13), width=13, border=4, command=login)
+E1 = Entry(font=("Times", 13), width=17)
+E2 = Entry(font=("Times", 13), width=17)
+imgLogo1.place(x=450, y=0)
+imgLogo.place(x=0, y=0)
+img.place(x=0, y=110)
+B1.place(x=720, y=445)
+img2.place(x=600, y=200)
+E1.place(x=710, y=400)
+E2.place(x=710, y=360)
+top.mainloop()
 
